@@ -1,10 +1,12 @@
 # IDEA Notes
 
-Personal knowledge management using the IDEA method, powered by [OpenCode](https://opencode.ai).
+Personal knowledge management using the IDEA method, powered by [GitHub Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli).
 
 ## What is this?
 
-An AI-augmented personal knowledge management system. Notes are stored as plain markdown files (compatible with Obsidian) and managed through natural language commands via OpenCode.
+An AI-powered personal knowledge management system. Notes are stored as plain markdown files and managed through natural language conversation with GitHub Copilot CLI. Fork this repo to get started.
+
+For the full setup guide — including private/public publishing — see [Setting Up an AI-Powered Private/Public Note-Taking System](https://github.com/ianphil/public-notes/blob/main/expertise/IDEA-notes-setup.md).
 
 ## The IDEA Method
 
@@ -18,84 +20,75 @@ An AI-augmented personal knowledge management system. Notes are stored as plain 
 
 ## Getting Started
 
-1. Clone this repo
-2. Open with [OpenCode](https://opencode.ai)
-3. Start taking notes!
+1. Fork this repo (make it **private**)
+2. Install [GitHub Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli)
+3. Start taking notes by talking to Copilot
 
-## Commands
+## Skills
 
-### Create Tracking Areas (Meta Commands)
+Skills are small instruction files in `.github/skills/` that teach Copilot your vault's workflows. This repo includes:
 
-These create dedicated slash commands for tracking specific topics:
+| Skill | What it does |
+|-------|-------------|
+| `capture-triage` | Quick capture notes, list inbox, classify into IDEA folders |
+| `entity-notes` | Create new initiative/domain/expertise/person folders with templates |
+| `next-actions` | Manage per-entity task lists with open/done sections |
+| `discovery` | Search notes and list recently modified files |
+| `links` | Suggest and add wiki-style links between notes |
+| `lifecycle` | Archive completed entities, commit and push |
+| `daily-report` | Generate a daily briefing from your notes |
 
-| Command | Creates |
-|---------|---------|
-| `/meta-person {name}` | `/person-{name}` command + folder |
-| `/meta-domain {name}` | `/domain-{name}` command + folder |
-| `/meta-initiative {name}` | `/initiative-{name}` command + folder |
-| `/meta-expertise {name}` | `/expertise-{name}` command + folder |
+### Example Conversations
 
-**Example:** `/meta-person jane-doe` creates:
-- Folder: `domains/people/jane-doe/`
-- Command: `/person-jane-doe`
-
-### Quick Capture
-
+**Quick capture:**
 ```
-/note {target} {content}
+> note jane-doe Met for coffee, discussed timeline
+  → creates entry in domains/people/jane-doe/
+
+> note mobile-app Decided to use React Native
+  → creates entry in initiatives/mobile-app/
+
+> note Remember to review budget
+  → lands in inbox/ (no match found)
 ```
 
-Auto-routes notes to matching folders or inbox:
-- `/note jane-doe Met for coffee, discussed timeline` → goes to person folder
-- `/note mobile-app Decided to use React Native` → goes to initiative folder
-- `/note rust Learned about lifetimes` → goes to expertise folder
-- `/note Remember to review budget` → goes to inbox (no target match)
+**Triage inbox:**
+```
+> inbox
+  3 notes waiting...
 
-### Triage
+> classify 20260120-0915-budget.md domain finances
+  → moved to domains/finances/
+```
 
-| Command | Description |
-|---------|-------------|
-| `/inbox` | List all notes waiting to be classified |
-| `/classify {file} {type} {name}` | Move inbox note to proper location |
+**Manage tasks:**
+```
+> next-action add initiative mobile-app Write the API spec
+> next-action list initiative mobile-app
+> next-action done initiative mobile-app 1
+```
 
-**Types for classify:** `person`, `domain`, `initiative`, `expertise`
+**Search and discover:**
+```
+> search React Native
+> recent
+```
 
-### Discovery
+## File Naming
 
-| Command | Description |
-|---------|-------------|
-| `/search {query}` | Search across all notes |
-| `/recent` | Show 10 most recently modified notes |
-| `/recent {n}` | Show last N modified notes |
-
-### Lifecycle
-
-| Command | Description |
-|---------|-------------|
-| `/archive {type} {name}` | Move folder and command to archive |
-| `/ship` | Git add, commit, and push all changes |
-
-## File Naming Convention
-
-Notes are created with timestamp-based filenames:
-- **Format:** `YYYYMMDD-HHMM.md` (e.g., `20260120-1430.md`)
-- **Inbox notes:** `YYYYMMDD-HHMM-{slug}.md` where slug is derived from content
-
-## Quick Start Workflow
-
-1. **Create a tracking area:** `/meta-person jane-doe`
-2. **Take notes:** `/person-jane-doe` or `/note jane-doe discussed project timeline`
-3. **Quick capture:** `/note need to review budget proposal` (goes to inbox)
-4. **Triage inbox:** `/inbox` then `/classify 20260120-1755-budget.md domain finances`
-5. **Find notes:** `/search budget` or `/recent`
-6. **Archive when done:** `/archive initiative old-project`
-7. **Save to git:** `/ship`
+- **Default:** `YYYYMMDD-HHMM.md` (e.g., `20260120-1430.md`)
+- **Inbox:** `YYYYMMDD-HHMM-{slug}.md` where slug is derived from content
 
 ## Sample Content
 
-This repo includes sample notes demonstrating the system:
+This repo includes sample notes to demonstrate the system:
 
-- **Initiatives:** `mobile-app` - A sample project
-- **Domains:** `people/jane-doe` - A sample person, `finances` - A sample domain
-- **Expertise:** `rust` - A sample learning topic
+- **Initiatives:** `mobile-app` — a sample project with meeting notes
+- **Domains:** `people/jane-doe` — a sample person, `finances` — a sample domain
+- **Expertise:** `rust` — sample learning notes
 - **Inbox:** Sample notes waiting to be classified
+
+## Learn More
+
+- [Full setup tutorial](https://github.com/ianphil/public-notes/blob/main/expertise/IDEA-notes-setup.md) — private repo, public publishing, skills, daily workflow
+- [GitHub Copilot CLI docs](https://docs.github.com/en/copilot/github-copilot-in-the-cli)
