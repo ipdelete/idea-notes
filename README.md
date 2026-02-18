@@ -76,8 +76,8 @@ Skills are small instruction files in `.github/skills/` that teach Copilot your 
 
 ## File Naming
 
-- **Default:** `YYYYMMDD-HHMM.md` (e.g., `20260120-1430.md`)
-- **Inbox:** `YYYYMMDD-HHMM-{slug}.md` where slug is derived from content
+- Use descriptive, lowercase-hyphenated filenames (e.g., `docker-networking.md`, `renew-ssl-cert.md`)
+- Inbox notes: `{descriptive-slug}.md` derived from content
 
 ## Sample Content
 

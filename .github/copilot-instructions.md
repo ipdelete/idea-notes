@@ -12,7 +12,7 @@ This is a notes vault using the IDEA method.
 | inbox/ | Quick capture, triaged later |
 
 ## Conventions
-- Notes use `YYYYMMDD-HHMM.md` timestamp naming by default
+- Notes use descriptive, lowercase-hyphenated filenames (e.g., `docker-networking.md`, `renew-ssl-cert.md`)
 - Each initiative/domain/expertise folder has a main note + `next-actions.md`
 - next-actions items use `- [ ]` for open and `- [x]` for done
 - Sections: `## Open` and `## Done` in next-actions.md
